@@ -1,6 +1,6 @@
-# Analytiq — AI-Powered Analytics Platform
+# Smartlytics — AI-Powered Analytics Platform
 
-A full-stack MERN application that lets you upload CSV/Excel datasets and uses OpenAI GPT-4o to automatically generate analytics dashboards with KPIs, charts, and deep insights.
+A full-stack MERN application that lets you upload CSV/Excel datasets and uses Gemini API Key to automatically generate analytics dashboards with KPIs, charts, and deep insights.
 
 ---
 
@@ -9,7 +9,7 @@ A full-stack MERN application that lets you upload CSV/Excel datasets and uses O
 ### Prerequisites
 - Node.js 18+
 - MongoDB (local or Atlas)
-- OpenAI API key
+- Gemini API key
 
 ### 1. Clone & Install
 
@@ -32,7 +32,7 @@ Edit `backend/.env`:
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/analytiq
 JWT_SECRET=your_super_secret_jwt_key_change_this
-OPENAI_API_KEY=sk-your-openai-api-key-here
+GEMINI_API_KEY=sk-your-openai-api-key-here
 NODE_ENV=development
 ```
 
@@ -54,7 +54,7 @@ npm run dev
 analytiq/
 ├── backend/
 │   ├── controllers/
-│   │   ├── aiController.js          # OpenAI GPT-4o integration
+│   │   ├── aiController.js          
 │   │   ├── authController.js        # JWT auth
 │   │   ├── dashboardController.js   # Dashboard CRUD + data compute
 │   │   └── datasetController.js     # File upload & processing
@@ -166,15 +166,8 @@ analytiq/
 
 ## 🛠 Tech Stack
 
-**Backend:** Node.js, Express, MongoDB, Mongoose, JWT, Multer, PapaParse, SheetJS, OpenAI SDK
+**Backend:** Node.js, Express, MongoDB, Mongoose, JWT, Multer, PapaParse, SheetJS, Gemini Api key
 
 **Frontend:** React 18, React Router 6, Chart.js 4, React-Chartjs-2, React-Dropzone, React-Toastify, Axios
 
 ---
-
-## 📝 Notes
-
-- Make sure MongoDB is running before starting the backend
-- OpenAI API key must have GPT-4o access
-- The `uploads/` folder is created automatically in the backend directory
-- In production, set `NODE_ENV=production` and serve the React build statically
