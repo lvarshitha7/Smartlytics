@@ -44,8 +44,8 @@ export default function LandingPage() {
             Full-Stack AI Project - React + Node.js + Gemini AI
           </div>
           <h1 className={styles.heroTitle}>
-            Turn Data Into Decisions - Instantly.
-            <span className={styles.heroAccent}>From raw data to insights in minutes.</span>
+            Turn Raw Data Into Decisions - Instantly.
+            <span className={styles.heroAccent}>From raw data to insights</span>
           </h1>
           <p className={styles.heroSubtitle}>
             Build powerful, interactive dashboards from raw business data.
@@ -62,12 +62,7 @@ export default function LandingPage() {
             <Link to="/demo" className={styles.heroPrimary}>Try Live Demo</Link>
             <a href={profile.github} target="_blank" rel="noreferrer" className={styles.heroSecondary}>View Code</a>
           </div>
-          <div className={styles.profileRow}>
-            <span className={styles.builtBy}>Built by {profile.name}</span>
-            <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href={profile.resume} target="_blank" rel="noreferrer">Resume</a>
-          </div>
+          
         </div>
 
         <div className={styles.heroRight}>

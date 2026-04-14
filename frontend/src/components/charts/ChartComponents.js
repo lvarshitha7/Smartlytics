@@ -9,6 +9,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointEleme
 
 const PALETTES = {
   blue:   ['#1a56db','#3f83f8','#76a9fa','#a4cafe','#c3ddfd'],
+  yellow: ['#b45309','#d97706','#f59e0b','#fbbf24','#fde68a'],
   green:  ['#057a55','#0e9f6e','#31c48d','#84e1bc','#bcf0da'],
   orange: ['#c05621','#dd6b20','#ed8936','#f6ad55','#fbd38d'],
   purple: ['#6c2bd9','#7e3af2','#9061f9','#ac94fa','#c4b5fd'],
@@ -16,6 +17,30 @@ const PALETTES = {
   teal:   ['#0694a2','#0e7490','#06b6d4','#67e8f9','#a5f3fc'],
   multi:  ['#1a56db','#057a55','#c05621','#6c2bd9','#c81e1e','#0694a2','#b45309','#047857']
 };
+
+const TYPE_PRIMARY_SCHEME = {
+  bar: 'blue',
+  line: 'green',
+  area: 'green',
+  pie: 'blue',
+  doughnut: 'blue',
+  histogram: 'blue',
+  scatter: 'green'
+};
+
+const getPaletteForType = (type, config = {}) => {
+  const scheme = config.colorScheme || TYPE_PRIMARY_SCHEME[type] || 'blue';
+  return PALETTES[scheme] || PALETTES.blue;
+};
+
+export function hasRenderableChartData(type, data) {
+  if (!data) return false;
+  if (type === 'scatter') return Array.isArray(data?.values) && data.values.length >= 3;
+  if (Array.isArray(data?.datasets) && data.datasets.length > 0) {
+    return data.datasets.some(ds => Array.isArray(ds?.data) && ds.data.length >= 3);
+  }
+  return Array.isArray(data?.labels) && data.labels.length >= 3 && Array.isArray(data?.values) && data.values.length >= 3;
+}
 
 const baseOptions = (title) => ({
   responsive: true,
@@ -37,16 +62,16 @@ const baseOptions = (title) => ({
 });
 
 export function BarChart({ data, config = {} }) {
-  if (!data?.labels?.length) return <NoData />;
-  const palette = PALETTES[config.colorScheme] || PALETTES.blue;
+  if (!hasRenderableChartData('bar', data)) return null;
+  const palette = getPaletteForType('bar', config);
   const isGrouped = data.datasets?.length > 1;
 
   const chartData = isGrouped ? {
     labels: data.labels,
     datasets: (data.datasets || []).map((ds, i) => ({
       label: ds.label, data: ds.data,
-      backgroundColor: PALETTES.multi[i % PALETTES.multi.length] + 'cc',
-      borderColor: PALETTES.multi[i % PALETTES.multi.length],
+      backgroundColor: palette[i % palette.length] + 'cc',
+      borderColor: palette[i % palette.length],
       borderWidth: 1, borderRadius: 4
     }))
   } : {
@@ -60,8 +85,8 @@ export function BarChart({ data, config = {} }) {
 }
 
 export function LineChart({ data, config = {} }) {
-  if (!data?.labels?.length) return <NoData />;
-  const palette = PALETTES[config.colorScheme] || PALETTES.blue;
+  if (!hasRenderableChartData('line', data)) return null;
+  const palette = getPaletteForType('line', config);
   const isGrouped = data.datasets?.length > 1;
   const color = palette[0];
 
@@ -69,8 +94,8 @@ export function LineChart({ data, config = {} }) {
     labels: data.labels,
     datasets: (data.datasets || []).map((ds, i) => ({
       label: ds.label, data: ds.data,
-      borderColor: PALETTES.multi[i % PALETTES.multi.length],
-      backgroundColor: PALETTES.multi[i % PALETTES.multi.length] + '18',
+      borderColor: palette[i % palette.length],
+      backgroundColor: palette[i % palette.length] + '18',
       borderWidth: 2, tension: 0.35, fill: false, pointRadius: data.labels.length > 50 ? 0 : 3
     }))
   } : {
@@ -82,43 +107,42 @@ export function LineChart({ data, config = {} }) {
 }
 
 export function AreaChart({ data, config = {} }) {
-  if (!data?.labels?.length) return <NoData />;
-  const color = (PALETTES[config.colorScheme] || PALETTES.teal)[0];
+  if (!hasRenderableChartData('area', data)) return null;
+  const color = getPaletteForType('area', config)[0];
   const chartData = { labels: data.labels, datasets: [{ data: data.values, borderColor: color, backgroundColor: color + '30', borderWidth: 2, tension: 0.4, fill: true, pointRadius: 0 }] };
   return <Line data={chartData} options={baseOptions()} />;
 }
 
 export function PieChart({ data, config = {} }) {
-  if (!data?.labels?.length) return <NoData />;
-  const chartData = { labels: data.labels, datasets: [{ data: data.values, backgroundColor: PALETTES.multi.slice(0, data.labels.length), borderWidth: 2, borderColor: '#fff' }] };
+  if (!hasRenderableChartData('pie', data)) return null;
+  const palette = getPaletteForType('pie', config);
+  const chartData = { labels: data.labels, datasets: [{ data: data.values, backgroundColor: data.labels.map((_, i) => palette[i % palette.length]), borderWidth: 2, borderColor: '#fff' }] };
   return <Pie data={chartData} options={{ ...baseOptions(), plugins: { ...baseOptions().plugins, legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 10 } } }, scales: undefined }} />;
 }
 
 export function DoughnutChart({ data, config = {} }) {
-  if (!data?.labels?.length) return <NoData />;
-  const chartData = { labels: data.labels, datasets: [{ data: data.values, backgroundColor: PALETTES.multi.slice(0, data.labels.length), borderWidth: 2, borderColor: '#fff', hoverOffset: 6 }] };
+  if (!hasRenderableChartData('doughnut', data)) return null;
+  const palette = getPaletteForType('doughnut', config);
+  const chartData = { labels: data.labels, datasets: [{ data: data.values, backgroundColor: data.labels.map((_, i) => palette[i % palette.length]), borderWidth: 2, borderColor: '#fff', hoverOffset: 6 }] };
   return <Doughnut data={chartData} options={{ ...baseOptions(), cutout: '60%', plugins: { ...baseOptions().plugins, legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 10 } } }, scales: undefined }} />;
 }
 
 export function ScatterChart({ data, config = {} }) {
-  if (!data?.values?.length && !data?.labels?.length) return <NoData />;
+  if (!hasRenderableChartData('scatter', data)) return null;
   const pts = (data.values || []).map((y, i) => ({ x: i, y }));
-  const chartData = { datasets: [{ label: 'Data', data: pts, backgroundColor: (PALETTES[config.colorScheme] || PALETTES.orange)[0] + '99', pointRadius: 5, pointHoverRadius: 7 }] };
+  const chartData = { datasets: [{ label: 'Data', data: pts, backgroundColor: getPaletteForType('scatter', config)[0] + '99', pointRadius: 5, pointHoverRadius: 7 }] };
   return <Scatter data={chartData} options={baseOptions()} />;
 }
 
 export function HistogramChart({ data, config = {} }) {
-  if (!data?.labels?.length) return <NoData />;
-  const color = (PALETTES[config.colorScheme] || PALETTES.blue)[0];
+  if (!hasRenderableChartData('histogram', data)) return null;
+  const color = getPaletteForType('histogram', config)[0];
   const chartData = { labels: data.labels, datasets: [{ data: data.values, backgroundColor: color + 'bb', borderColor: color, borderWidth: 1, borderRadius: 2 }] };
   return <Bar data={chartData} options={{ ...baseOptions(), plugins: { ...baseOptions().plugins }, barPercentage: 1, categoryPercentage: 1 }} />;
 }
 
-function NoData() {
-  return <div style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'100%', color:'#9a9a95', fontSize:13 }}>No data available</div>;
-}
-
 export function renderChart(type, data, config) {
+  if (!hasRenderableChartData(type, data)) return null;
   const props = { data, config };
   switch (type) {
     case 'bar': return <BarChart {...props} />;

@@ -52,6 +52,7 @@
 .badge_sm { font-size: 10px; padding: 2px 7px; }
 .badge_default { background: var(--surface3); color: var(--text2); }
 .badge_blue { background: var(--blue-light); color: var(--blue); }
+.badge_yellow { background: var(--yellow-light); color: var(--yellow); }
 .badge_green { background: var(--green-light); color: var(--green); }
 .badge_orange { background: var(--orange-light); color: var(--orange); }
 .badge_red { background: var(--red-light); color: var(--red); }
@@ -113,6 +114,7 @@
   height: 3px;
 }
 .kpi_blue::before { background: var(--blue); }
+.kpi_yellow::before { background: var(--yellow); }
 .kpi_green::before { background: var(--green); }
 .kpi_orange::before { background: var(--orange); }
 .kpi_purple::before { background: var(--purple); }
