@@ -1,0 +1,48 @@
+.loadingWrap { display:flex; align-items:center; justify-content:center; height:200px; }
+.formatHint { font-size:12px; color:var(--text3); background:var(--surface3); padding:5px 12px; border-radius:20px; }
+
+.dropzone {
+  border: 2px dashed var(--border-md);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  padding: 48px 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+  margin-bottom: 28px;
+}
+.dropzone:hover { border-color: var(--brand); background: var(--brand-light); }
+.dropzoneActive { border-color: var(--brand); background: var(--brand-light); }
+.dropzoneUploading { cursor: not-allowed; opacity: 0.8; }
+
+.dropContent { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.dropIcon { font-size:44px; margin-bottom:4px; }
+.dropTitle { font-size:17px; font-weight:700; color:var(--text); }
+.dropSub { font-size:13px; color:var(--text3); }
+.fmtTags { display:flex; gap:8px; margin-top:6px; }
+.fmtTag { font-size:11px; font-family:var(--mono); background:var(--surface3); color:var(--text2); border-radius:5px; padding:3px 10px; }
+
+.uploadingState { display:flex; flex-direction:column; align-items:center; gap:12px; }
+.uploadLabel { font-size:14px; font-weight:600; color:var(--text2); }
+.progressBar { width:240px; height:6px; background:var(--surface3); border-radius:3px; overflow:hidden; }
+.progressFill { height:100%; background:var(--brand); border-radius:3px; transition:width 0.3s; }
+
+.tableCard { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; }
+.table { width:100%; border-collapse:collapse; font-size:13.5px; }
+.table thead th {
+  text-align:left; padding:11px 18px;
+  background:var(--surface2);
+  font-size:11px; font-weight:700; color:var(--text3);
+  text-transform:uppercase; letter-spacing:0.5px;
+  border-bottom:1px solid var(--border);
+}
+.table tbody td { padding:13px 18px; border-bottom:1px solid var(--border); }
+.table tbody tr:last-child td { border-bottom:none; }
+.table tbody tr:hover { background:var(--surface2); }
+.dsName { font-weight:600; color:var(--text); }
+.dsOrig { font-size:11px; color:var(--text3); margin-top:2px; }
+.mono { font-family:var(--mono); font-size:12.5px; color:var(--text2); }
+.date { font-size:12px; color:var(--text3); }
+.rowActions { display:flex; align-items:center; gap:8px; }
+.deleteBtn { background:none; border:none; color:var(--text3); padding:5px; border-radius:var(--radius-sm); display:flex; transition:background 0.15s, color 0.15s; cursor:pointer; }
+.deleteBtn:hover { background:var(--red-light); color:var(--red); }

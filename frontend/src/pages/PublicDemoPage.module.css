@@ -1,0 +1,397 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff7f8 0%, #ffffff 22%, #f8f7f3 100%);
+  color: var(--text);
+}
+
+.topbar {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.brandBox {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: #fff;
+}
+
+.topbarActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbarLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text2);
+}
+
+.hero {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 24px 24px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.kicker {
+  display: inline-flex;
+  background: var(--brand-light);
+  color: var(--brand);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 48px;
+  line-height: 1.06;
+  letter-spacing: -1.2px;
+  font-weight: 800;
+  max-width: 10ch;
+}
+
+.subtitle {
+  margin-top: 18px;
+  font-size: 16px;
+  color: var(--text2);
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+.heroActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius);
+  font-weight: 600;
+  color: var(--text2);
+}
+
+.generatorCard,
+.loadingPanel,
+.dashboardShell {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.generatorCard {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+.generatorHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.generatorTitle,
+.dashboardName {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.generatorSub,
+.dashboardMeta {
+  font-size: 13px;
+  color: var(--text3);
+}
+
+.stepRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  color: var(--text3);
+  border-top: 1px solid var(--border);
+}
+
+.stepDot {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--surface3);
+  color: var(--text2);
+}
+
+.stepActive {
+  color: var(--text);
+}
+
+.stepActive .stepDot {
+  background: var(--brand-light);
+  color: var(--brand);
+}
+
+.stepDone {
+  color: var(--text);
+}
+
+.stepDone .stepDot {
+  background: var(--green-light);
+  color: var(--green);
+}
+
+.loadingPanel {
+  padding: 48px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.loadingTitle {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.loadingText {
+  color: var(--text2);
+}
+
+.dashboardShell {
+  padding: 20px 24px 72px;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.dashboardActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dashboardMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.sectionLabel {
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text3);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.8fr);
+  gap: 20px;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.chartCard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.chartWide {
+  grid-column: span 2;
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chartTitle {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.chartSub {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+.chartType {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--surface3);
+  color: var(--text3);
+  border-radius: 6px;
+  padding: 3px 7px;
+}
+
+.chartBody {
+  height: 280px;
+  padding: 16px 18px;
+}
+
+.sidePanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.askCard,
+.ctaCard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.askTitle,
+.ctaTitle {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.askSub,
+.ctaText {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+.select {
+  margin-top: 14px;
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-md);
+  font-family: var(--font);
+  margin-bottom: 12px;
+}
+
+.answerBox {
+  margin-top: 12px;
+  min-height: 110px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  padding: 14px;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.answerLoading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text2);
+}
+
+.ctaLink {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpiGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 34px;
+    max-width: none;
+  }
+
+  .topbar,
+  .dashboardShell,
+  .hero {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .dashboardHeader,
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chartsGrid,
+  .kpiGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .chartWide {
+    grid-column: span 1;
+  }
+}
