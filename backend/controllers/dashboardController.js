@@ -38,16 +38,9 @@ async function computeWidgetData(widget, dataset) {
 
     if (widget.type === 'pie' || widget.type === 'doughnut') {
       const freq = {};
-<<<<<<< HEAD
       data.forEach(r => { const k = String(r[cfg.xAxis] || 'Unknown'); freq[k] = (freq[k] || 0) + (cfg.yAxis ? parseFloat(r[cfg.yAxis]) || 0 : 1); });
       const sorted = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 10);
       return { labels: sorted.map(x => x[0]), values: sorted.map(x => parseFloat(x[1].toFixed(2))) };
-=======
-      data.forEach(r => { const k = String(r[cfg.xAxis] || 'Unknown'); freq[k] = (freq[k]||0) + (cfg.yAxis ? parseFloat(r[cfg.yAxis])||0 : 1); });
-      const sorted = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0,10);
-      const result = { labels: sorted.map(x=>x[0]), values: sorted.map(x=>parseFloat(x[1].toFixed(2))) };
-      return hasMinPoints(result) ? result : null;
->>>>>>> eee1ebf529cc484968c5dff0e706a47c132ef4b4
     }
 
     if (widget.type === 'histogram') {
@@ -55,16 +48,9 @@ async function computeWidgetData(widget, dataset) {
       const mn = Math.min(...vals), mx = Math.max(...vals);
       const bins = 20; const step = (mx - mn) / bins || 1;
       const counts = new Array(bins).fill(0);
-<<<<<<< HEAD
       vals.forEach(v => { const b = Math.min(Math.floor((v - mn) / step), bins - 1); counts[b]++; });
       const labels = counts.map((_, i) => `${(mn + i * step).toFixed(1)}`);
       return { labels, values: counts };
-=======
-      vals.forEach(v => { const b = Math.min(Math.floor((v-mn)/step), bins-1); counts[b]++; });
-      const labels = counts.map((_, i) => `${(mn+i*step).toFixed(1)}`);
-      const result = { labels, values: counts };
-      return hasMinPoints(result) ? result : null;
->>>>>>> eee1ebf529cc484968c5dff0e706a47c132ef4b4
     }
 
     if (cfg.groupBy) {
@@ -79,14 +65,8 @@ async function computeWidgetData(widget, dataset) {
       });
       const xLabels = Object.keys(grouped).slice(0, 30);
       const groups = [...groupKeys].slice(0, 6);
-<<<<<<< HEAD
       const datasets = groups.map(g => ({ label: g, data: xLabels.map(x => parseFloat((grouped[x]?.[g] || 0).toFixed(2))) }));
       return { labels: xLabels, datasets };
-=======
-      const datasets = groups.map(g => ({ label: g, data: xLabels.map(x => parseFloat((grouped[x]?.[g]||0).toFixed(2))) }));
-      const result = { labels: xLabels, datasets };
-      return hasMinPoints(result) ? result : null;
->>>>>>> eee1ebf529cc484968c5dff0e706a47c132ef4b4
     }
 
     const agg = cfg.aggregation || 'sum';
