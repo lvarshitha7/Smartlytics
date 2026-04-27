@@ -81,7 +81,7 @@ function buildSchemaSummary(dataset) {
     if (col.type === 'numeric' && s) {
       summary += `- ${col.name} (numeric): min=${s.min}, max=${s.max}, avg=${s.mean}, sum=${s.sum}\n`;
     } else if (s?.topValues) {
-      summary += `- ${col.name} (categorical): top values = ${s.topValues.slice(0,5).map(v=>`${v.value}(${v.count})`).join(', ')}\n`;
+      summary += `- ${col.name} (categorical): top values = ${s.topValues.slice(0, 5).map(v => `${v.value}(${v.count})`).join(', ')}\n`;
     }
   });
   return summary;

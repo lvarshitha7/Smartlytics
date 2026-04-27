@@ -101,8 +101,8 @@ export default function NewDashboardPage() {
             <div className={styles.datasetPreview}>
               <div className={styles.previewTitle}>Dataset preview</div>
               <div className={styles.previewTags}>
-                {numCols.slice(0,6).map(c => <span key={c} className={styles.numTag}>{c}</span>)}
-                {catCols.slice(0,6).map(c => <span key={c} className={styles.catTag}>{c}</span>)}
+                {numCols.slice(0, 6).map(c => <span key={c} className={styles.numTag}>{c}</span>)}
+                {catCols.slice(0, 6).map(c => <span key={c} className={styles.catTag}>{c}</span>)}
               </div>
             </div>
           )}
@@ -135,7 +135,7 @@ export default function NewDashboardPage() {
                       <div className={styles.sugName}>{s.name}</div>
                       <div className={styles.sugDesc}>{s.description}</div>
                       <div className={styles.sugCharts}>
-                        {s.suggestedCharts?.slice(0,3).map((c, ci) => <span key={ci} className={styles.chartChip}>{c}</span>)}
+                        {s.suggestedCharts?.slice(0, 3).map((c, ci) => <span key={ci} className={styles.chartChip}>{c}</span>)}
                       </div>
                     </div>
                   ))}
@@ -196,4 +196,4 @@ export default function NewDashboardPage() {
   );
 }
 
-function SparkIcon() { return <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 4.5L13 7l-4.5 1.5L7 13l-1.5-4.5L1 7l4.5-1.5L7 1z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg>; }
+function SparkIcon() { return <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 4.5L13 7l-4.5 1.5L7 13l-1.5-4.5L1 7l4.5-1.5L7 1z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /></svg>; }

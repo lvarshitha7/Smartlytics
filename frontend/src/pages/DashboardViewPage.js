@@ -62,8 +62,26 @@ export default function DashboardViewPage() {
   if (loading) return <div className={styles.loadingWrap}><div className="spinner lg" /></div>;
   if (!dashboard) return null;
 
-  const kpiWidgets = dashboard.widgets?.filter(w => w.type === 'kpi') || [];
-  const chartWidgets = dashboard.widgets?.filter(w => w.type !== 'kpi') || [];
+  const kpiWidgets = (dashboard.widgets?.filter(w => w.type === 'kpi') || [])
+    .filter(w => {
+      const d = widgetData[w.id];
+      const val = d?.value;
+      // Discard KPIs with 0, null, undefined, or NaN values
+      return val !== null && val !== undefined && !isNaN(val) && val !== 0;
+    });
+  const chartWidgets = (dashboard.widgets?.filter(w => w.type !== 'kpi') || [])
+    .filter(w => {
+      const d = widgetData[w.id];
+      if (!d) return false;
+      const hasLabels = d.labels?.length > 0;
+      // Check values exist AND at least one is non-zero
+      const hasValues = d.values?.length > 0 && d.values.some(v => v !== 0 && v !== null && v !== undefined && !isNaN(v));
+      // Check datasets exist AND at least one dataset has non-zero data
+      const hasDatasets = d.datasets?.length > 0 && d.datasets.some(ds =>
+        ds.data?.length > 0 && ds.data.some(v => v !== 0 && v !== null && v !== undefined && !isNaN(v))
+      );
+      return hasLabels && (hasValues || hasDatasets);
+    });
 
   return (
     <div className={styles.page}>

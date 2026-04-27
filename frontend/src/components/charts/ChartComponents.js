@@ -8,13 +8,13 @@ import { Bar, Line, Pie, Doughnut, Scatter } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, ArcElement, Title, Tooltip, Legend, Filler);
 
 const PALETTES = {
-  blue:   ['#1a56db','#3f83f8','#76a9fa','#a4cafe','#c3ddfd'],
-  green:  ['#057a55','#0e9f6e','#31c48d','#84e1bc','#bcf0da'],
-  orange: ['#c05621','#dd6b20','#ed8936','#f6ad55','#fbd38d'],
-  purple: ['#6c2bd9','#7e3af2','#9061f9','#ac94fa','#c4b5fd'],
-  red:    ['#c81e1e','#e02424','#f05252','#f98080','#fbd5d5'],
-  teal:   ['#0694a2','#0e7490','#06b6d4','#67e8f9','#a5f3fc'],
-  multi:  ['#1a56db','#057a55','#c05621','#6c2bd9','#c81e1e','#0694a2','#b45309','#047857']
+  blue: ['#1a56db', '#3f83f8', '#76a9fa', '#a4cafe', '#c3ddfd'],
+  green: ['#057a55', '#0e9f6e', '#31c48d', '#84e1bc', '#bcf0da'],
+  orange: ['#c05621', '#dd6b20', '#ed8936', '#f6ad55', '#fbd38d'],
+  purple: ['#6c2bd9', '#7e3af2', '#9061f9', '#ac94fa', '#c4b5fd'],
+  red: ['#c81e1e', '#e02424', '#f05252', '#f98080', '#fbd5d5'],
+  teal: ['#0694a2', '#0e7490', '#06b6d4', '#67e8f9', '#a5f3fc'],
+  multi: ['#1a56db', '#057a55', '#c05621', '#6c2bd9', '#c81e1e', '#0694a2', '#b45309', '#047857']
 };
 
 const baseOptions = (title) => ({
@@ -115,7 +115,7 @@ export function HistogramChart({ data, config = {} }) {
 }
 
 function NoData() {
-  return <div style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'100%', color:'#9a9a95', fontSize:13 }}>No data available</div>;
+  return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#9a9a95', fontSize: 13 }}>No data available</div>;
 }
 
 export function renderChart(type, data, config) {

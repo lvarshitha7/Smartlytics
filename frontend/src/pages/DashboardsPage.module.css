@@ -27,10 +27,10 @@
 .cardAccent {
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
 }
-.accent_green { background: var(--green); }
-.accent_orange { background: var(--orange); }
-.accent_blue { background: var(--blue); }
-.accent_purple { background: var(--purple); }
+.accent_green { background: #31c48d; }
+.accent_orange { background: #ed8936; }
+.accent_blue { background: #3f83f8; }
+.accent_purple { background: #9061f9; }
 .accent_brand { background: var(--brand); }
 .accent_default { background: var(--text3); }
 
@@ -49,8 +49,9 @@
   padding: 5px; border-radius: var(--radius-sm);
   display: flex; align-items: center;
   transition: background 0.15s, color 0.15s;
+  cursor: pointer;
 }
-.deleteBtn:hover { background: var(--red-light); color: var(--red); }
+.deleteBtn:hover { background: var(--red-light); color: #f05252; }
 .cardDate { font-size: 11px; color: var(--text3); margin-top: 10px; }
 
 /* New Dashboard Card */
