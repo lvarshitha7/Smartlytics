@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 import { dashboardAPI, aiAPI } from '../services/api';
 import { KpiCard, Badge, Modal } from '../components/ui/UIComponents';
 import Button from '../components/ui/Button';
-import { renderChart } from '../components/charts/ChartComponents';
+import { renderChart, hasRenderableChartData } from '../components/charts/ChartComponents';
 import styles from './DashboardViewPage.module.css';
 
-const COLORS = ['blue','green','orange','purple','red','teal','brand'];
+const COLORS = ['blue','red','yellow','brand'];
 const fmtNum = (n) => {
   if (n === null || n === undefined || isNaN(n)) return '—';
   if (Math.abs(n) >= 1e9) return (n/1e9).toFixed(2) + 'B';
@@ -140,7 +140,10 @@ export default function DashboardViewPage() {
           <div className={styles.chartsGrid}>
             {chartWidgets.map((w) => {
               const data = widgetData[w.id];
+              if (!hasRenderableChartData(w.type, data)) return null;
               const isWide = ['line','area'].includes(w.type) || (w.w || 6) >= 8;
+              const chartElement = renderChart(w.type, data, w.config || {});
+              if (!chartElement) return null;
               return (
                 <div key={w.id} className={`${styles.chartCard} ${isWide ? styles.chartWide : ''}`}>
                   <div className={styles.chartCardHeader}>
@@ -154,7 +157,7 @@ export default function DashboardViewPage() {
                     {computing ? (
                       <div className={styles.chartLoading}><div className="spinner" /></div>
                     ) : (
-                      renderChart(w.type, data, w.config || {})
+                      chartElement
                     )}
                   </div>
                 </div>

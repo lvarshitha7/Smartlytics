@@ -19,6 +19,59 @@ function cleanJsonResponse(text) {
     .trim();
 }
 
+const CHART_TYPES = new Set(['line', 'bar', 'pie', 'doughnut', 'scatter', 'area', 'histogram']);
+const KPI_TYPES = new Set(['kpi']);
+const TYPE_TO_PRIMARY_COLOR = {
+  bar: 'blue',
+  line: 'green',
+  area: 'green',
+  pie: 'blue',
+  doughnut: 'blue',
+  histogram: 'blue',
+  scatter: 'green',
+  kpi: 'blue'
+};
+
+function hasEnoughInlineData(widget) {
+  const labelsLen = Array.isArray(widget?.labels) ? widget.labels.length : 0;
+  const valuesLen = Array.isArray(widget?.values) ? widget.values.length : 0;
+  const datasetsLen = Array.isArray(widget?.datasets) ? widget.datasets.length : 0;
+  const firstDatasetPoints = datasetsLen > 0 && Array.isArray(widget.datasets[0]?.data) ? widget.datasets[0].data.length : 0;
+  const maxLen = Math.max(labelsLen, valuesLen, firstDatasetPoints);
+  if (!labelsLen && !valuesLen && !datasetsLen) return true;
+  return maxLen >= 3;
+}
+
+function sanitizeGeneratedWidgets(widgets = []) {
+  return (widgets || []).filter(Boolean).map((widget, index) => {
+    const type = String(widget.type || '').toLowerCase();
+    const safeId = widget.id || `w${index + 1}`;
+    const normalized = {
+      ...widget,
+      id: safeId,
+      type
+    };
+
+    if (KPI_TYPES.has(type)) {
+      normalized.kpiConfig = {
+        ...(widget.kpiConfig || {}),
+        colorTheme: TYPE_TO_PRIMARY_COLOR.kpi
+      };
+      return normalized;
+    }
+
+    if (!CHART_TYPES.has(type)) return null;
+    if (!widget?.config?.xAxis) return null;
+    if (!hasEnoughInlineData(widget)) return null;
+
+    normalized.config = {
+      ...(widget.config || {}),
+      colorScheme: TYPE_TO_PRIMARY_COLOR[type] || 'blue'
+    };
+    return normalized;
+  }).filter(Boolean);
+}
+
 async function generateWithGemini(prompt, { temperature = 0.4, maxOutputTokens = 4096 } = {}) {
   if (!genAI) {
     throw new Error('GEMINI_API_KEY is missing. Add it to backend/.env and restart the server.');
@@ -120,7 +173,7 @@ Return ONLY valid JSON (no markdown, no explanation) with this structure:
         "yAxis": "column_name",
         "groupBy": "column_name_or_null",
         "aggregation": "sum|avg|count|min|max",
-        "colorScheme": "blue|green|orange|purple|red|teal",
+        "colorScheme": "blue|red|yellow",
         "showLegend": true,
         "showDataLabels": false
       },
@@ -129,7 +182,7 @@ Return ONLY valid JSON (no markdown, no explanation) with this structure:
         "aggregation": "sum|avg|count|min|max",
         "prefix": "$",
         "suffix": "",
-        "colorTheme": "blue|green|orange|purple|red|teal"
+        "colorTheme": "blue|red|yellow"
       }
     }
   ]
@@ -144,6 +197,7 @@ Rules:
 - Only use column names that exist in the dataset
 - For KPIs: always set kpiConfig, can leave config as {}
 - For charts: always set config with at least xAxis
+- Use primary colors only for all widgets: blue, red, or yellow
 - Make it insightful and business-relevant`;
 
     const userMessage = `${schemaSummary}${userKpiInfo}${userPrompt}\n\nGenerate a comprehensive analytics dashboard for this dataset.`;
@@ -154,6 +208,10 @@ Rules:
     );
 
     const dashboardConfig = JSON.parse(responseText);
+    const sanitizedWidgets = sanitizeGeneratedWidgets(dashboardConfig.widgets || []);
+    if (!sanitizedWidgets.length) {
+      return res.status(422).json({ message: 'AI response did not contain valid chart/KPI widgets. Please try again.' });
+    }
 
     // Save as dashboard
     const dashboard = new Dashboard({
@@ -161,13 +219,13 @@ Rules:
       dataset: datasetId,
       name: dashboardConfig.name || `${dataset.name} Dashboard`,
       description: dashboardConfig.description || '',
-      widgets: dashboardConfig.widgets || [],
+      widgets: sanitizedWidgets,
       aiGenerated: true,
       aiPrompt: prompt || ''
     });
     await dashboard.save();
 
-    res.json({ dashboard, config: dashboardConfig });
+    res.json({ dashboard, config: { ...dashboardConfig, widgets: sanitizedWidgets } });
   } catch (err) {
     console.error('AI generate error:', err);
     res.status(500).json({ message: err.message || 'AI generation failed' });

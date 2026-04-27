@@ -32,7 +32,7 @@ Edit `backend/.env`:
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/analytiq
 JWT_SECRET=your_super_secret_jwt_key_change_this
-GEMINI_API_KEY=sk-your-openai-api-key-here
+GEMINI_API_KEY=sk-your-gemini-api-key-here
 NODE_ENV=development
 ```
 
@@ -115,7 +115,7 @@ analytiq/
 - Descriptive statistics computation
 - Preview data table
 
-### AI Dashboard Generation (GPT-4o)
+### AI Dashboard Generation 
 - Upload data → AI analyzes schema and stats
 - 3 AI-suggested dashboard types to choose from
 - Custom KPI inputs (e.g. "Total Revenue", "Average Order Value")

@@ -93,89 +93,89 @@ export default function LandingPage() {
           </svg>
         </div>
         <div className={styles.heroContent}>
-        <div className={styles.heroLeft}>
-          <div className={styles.aiBadge}>
-            <span className={styles.aiStar}>✦</span>
-            <span className={styles.aiBadgeText}>Agentic AI-Powered Self-Service BI and Analytics Platform</span>
-          </div>
-          <h1 className={styles.heroTitle}>
-            Go from data<br />to insights<br />in minutes
-          </h1>
-          <div className={styles.heroChecks}>
-            <span className={styles.heroCheck}><CheckIcon /> Connect Data</span>
-            <span className={styles.heroCheck}><CheckIcon /> Visually Analyze</span>
-            <span className={styles.heroCheck}><CheckIcon /> Get Actionable Insights</span>
-          </div>
-          <button className={styles.watchBtn} onClick={() => navigate('/demo')}>
-            <PlayIcon /> WATCH OVERVIEW
-          </button>
-        </div>
-
-        <div className={styles.heroRight}>
-          <div className={styles.signupCard}>
-            <div className={styles.cardTabs}>
-              <label className={styles.cardTab}>
-                <input type="radio" name="mode" defaultChecked /> Cloud
-              </label>
-              <label className={styles.cardTab}>
-                <input type="radio" name="mode" /> On-premise
-              </label>
+          <div className={styles.heroLeft}>
+            <div className={styles.aiBadge}>
+              <span className={styles.aiStar}>✦</span>
+              <span className={styles.aiBadgeText}>Agentic AI-Powered Self-Service BI and Analytics Platform</span>
             </div>
-            <form className={styles.signupForm} onSubmit={submit}>
-              <div className={styles.formGroup}>
-                <input
-                  className={styles.formInput}
-                  type="email"
-                  name="email"
-                  placeholder="Business Email *"
-                  value={form.email}
-                  onChange={handle}
-                  required
-                />
+            <h1 className={styles.heroTitle}>
+              Go from data<br />to insights<br />in minutes
+            </h1>
+            <div className={styles.heroChecks}>
+              <span className={styles.heroCheck}><CheckIcon /> Connect Data</span>
+              <span className={styles.heroCheck}><CheckIcon /> Visually Analyze</span>
+              <span className={styles.heroCheck}><CheckIcon /> Get Actionable Insights</span>
+            </div>
+            <button className={styles.watchBtn} onClick={() => navigate('/demo')}>
+              <PlayIcon /> WATCH OVERVIEW
+            </button>
+          </div>
+
+          <div className={styles.heroRight}>
+            <div className={styles.signupCard}>
+              <div className={styles.cardTabs}>
+                <label className={styles.cardTab}>
+                  <input type="radio" name="mode" defaultChecked /> Cloud
+                </label>
+                <label className={styles.cardTab}>
+                  <input type="radio" name="mode" /> On-premise
+                </label>
               </div>
-              <div className={styles.formGroup}>
-                <input
-                  className={styles.formInput}
-                  type="password"
-                  name="password"
-                  placeholder="Password *"
-                  value={form.password}
-                  onChange={handle}
-                  required
-                />
-              </div>
-              <div className={styles.formGroup}>
-                <div className={styles.phoneRow}>
-                  <span className={styles.phonePrefix}>+91</span>
+              <form className={styles.signupForm} onSubmit={submit}>
+                <div className={styles.formGroup}>
                   <input
-                    className={`${styles.formInput} ${styles.phoneInput}`}
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={form.phone}
+                    className={styles.formInput}
+                    type="email"
+                    name="email"
+                    placeholder="Business Email *"
+                    value={form.email}
                     onChange={handle}
+                    required
                   />
                 </div>
+                <div className={styles.formGroup}>
+                  <input
+                    className={styles.formInput}
+                    type="password"
+                    name="password"
+                    placeholder="Password *"
+                    value={form.password}
+                    onChange={handle}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <div className={styles.phoneRow}>
+                    <span className={styles.phonePrefix}>+91</span>
+                    <input
+                      className={`${styles.formInput} ${styles.phoneInput}`}
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      value={form.phone}
+                      onChange={handle}
+                    />
+                  </div>
+                </div>
+                <label className={styles.termsCheck}>
+                  <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} />
+                  <span>I agree to the <Link to="/terms" className={styles.termsLink}>Terms of Service</Link> and <Link to="/privacy" className={styles.termsLink}>Privacy Policy</Link>.</span>
+                </label>
+                <button className={styles.signupBtn} type="submit" disabled={loading}>
+                  {loading ? 'Creating account…' : 'SIGN UP FOR FREE'}
+                </button>
+              </form>
+              <div className={styles.socialRow}>
+                <span className={styles.socialText}>or sign in using</span>
+                <button className={styles.socialBtn} type="button" title="Google">
+                  <svg width="20" height="20" viewBox="0 0 20 20"><path d="M19.8 10.2c0-.7-.1-1.4-.2-2H10v3.8h5.5c-.2 1.2-1 2.3-2 3v2.5h3.3c1.9-1.8 3-4.4 3-7.3z" fill="#4285F4" /><path d="M10 20c2.7 0 5-.9 6.7-2.4l-3.3-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H1v2.6C2.7 17.8 6.1 20 10 20z" fill="#34A853" /><path d="M4.4 12c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V5.4H1C.4 6.6 0 8.3 0 10s.4 3.4 1 4.6l3.4-2.6z" fill="#FBBC05" /><path d="M10 3.9c1.5 0 2.8.5 3.9 1.5l2.9-2.9C15 .9 12.7 0 10 0 6.1 0 2.7 2.2 1 5.4L4.4 8C5.2 5.7 7.4 3.9 10 3.9z" fill="#EA4335" /></svg>
+                </button>
+                <button className={styles.socialBtn} type="button" title="LinkedIn">
+                  <svg width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" rx="3" fill="#0077B5" /><path d="M5.7 8.3H3.3v8.4h2.4V8.3zM4.5 7.2c.8 0 1.4-.6 1.4-1.4 0-.8-.6-1.4-1.4-1.4-.8 0-1.4.6-1.4 1.4 0 .8.6 1.4 1.4 1.4zM10.7 8.3H8.5v8.4h2.4v-4.2c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3v4.1h2.4v-4.6c0-2.3-.5-4.1-3.2-4.1-1.3 0-2.2.7-2.5 1.4h0V8.3z" fill="white" /></svg>
+                </button>
               </div>
-              <label className={styles.termsCheck}>
-                <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} />
-                <span>I agree to the <Link to="/terms" className={styles.termsLink}>Terms of Service</Link> and <Link to="/privacy" className={styles.termsLink}>Privacy Policy</Link>.</span>
-              </label>
-              <button className={styles.signupBtn} type="submit" disabled={loading}>
-                {loading ? 'Creating account…' : 'SIGN UP FOR FREE'}
-              </button>
-            </form>
-            <div className={styles.socialRow}>
-              <span className={styles.socialText}>or sign in using</span>
-              <button className={styles.socialBtn} type="button" title="Google">
-                <svg width="20" height="20" viewBox="0 0 20 20"><path d="M19.8 10.2c0-.7-.1-1.4-.2-2H10v3.8h5.5c-.2 1.2-1 2.3-2 3v2.5h3.3c1.9-1.8 3-4.4 3-7.3z" fill="#4285F4"/><path d="M10 20c2.7 0 5-.9 6.7-2.4l-3.3-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H1v2.6C2.7 17.8 6.1 20 10 20z" fill="#34A853"/><path d="M4.4 12c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V5.4H1C.4 6.6 0 8.3 0 10s.4 3.4 1 4.6l3.4-2.6z" fill="#FBBC05"/><path d="M10 3.9c1.5 0 2.8.5 3.9 1.5l2.9-2.9C15 .9 12.7 0 10 0 6.1 0 2.7 2.2 1 5.4L4.4 8C5.2 5.7 7.4 3.9 10 3.9z" fill="#EA4335"/></svg>
-              </button>
-              <button className={styles.socialBtn} type="button" title="LinkedIn">
-                <svg width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" rx="3" fill="#0077B5"/><path d="M5.7 8.3H3.3v8.4h2.4V8.3zM4.5 7.2c.8 0 1.4-.6 1.4-1.4 0-.8-.6-1.4-1.4-1.4-.8 0-1.4.6-1.4 1.4 0 .8.6 1.4 1.4 1.4zM10.7 8.3H8.5v8.4h2.4v-4.2c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3v4.1h2.4v-4.6c0-2.3-.5-4.1-3.2-4.1-1.3 0-2.2.7-2.5 1.4h0V8.3z" fill="white"/></svg>
-              </button>
             </div>
           </div>
-        </div>
         </div>
       </section>
 
@@ -184,9 +184,9 @@ export default function LandingPage() {
         <div className={styles.stepsLeft}>
           <div className={styles.stepsWelcome}>
             <svg className={styles.stepsLogo} width="36" height="36" viewBox="0 0 28 28" fill="none">
-              <path d="M4 8L14 3L24 8V20L14 25L4 20V8Z" stroke="#e8143c" strokeWidth="2" fill="none"/>
-              <path d="M14 13V25" stroke="#e8143c" strokeWidth="1.4"/>
-              <path d="M4 8L14 13L24 8" stroke="#e8143c" strokeWidth="1.4"/>
+              <path d="M4 8L14 3L24 8V20L14 25L4 20V8Z" stroke="#e8143c" strokeWidth="2" fill="none" />
+              <path d="M14 13V25" stroke="#e8143c" strokeWidth="1.4" />
+              <path d="M4 8L14 13L24 8" stroke="#e8143c" strokeWidth="1.4" />
             </svg>
             <h2 className={styles.stepsWelcomeTitle}>Welcome to <strong>Smartlytics!</strong></h2>
           </div>
@@ -199,39 +199,39 @@ export default function LandingPage() {
             <div className={styles.stepItem}>
               <div className={styles.stepIconWrap}>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                  <rect x="12" y="8" width="24" height="32" rx="3" stroke="#3B5BDB" strokeWidth="2" fill="none"/>
-                  <path d="M20 20L24 24L28 20" stroke="#3B5BDB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M24 14V24" stroke="#3B5BDB" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M16 30H32" stroke="#3B5BDB" strokeWidth="1.5" strokeLinecap="round"/>
-                  <path d="M16 34H32" stroke="#3B5BDB" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="12" y="8" width="24" height="32" rx="3" stroke="#3B5BDB" strokeWidth="2" fill="none" />
+                  <path d="M20 20L24 24L28 20" stroke="#3B5BDB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M24 14V24" stroke="#3B5BDB" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M16 30H32" stroke="#3B5BDB" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M16 34H32" stroke="#3B5BDB" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </div>
               <div className={styles.stepLabel}><strong>1. Import/Connect</strong><br />Data</div>
             </div>
             <div className={styles.stepDots}>
-              <svg width="60" height="20" viewBox="0 0 60 20"><path d="M0 10h60" stroke="#bbb" strokeWidth="1.5" strokeDasharray="4 4"/><polygon points="55,6 60,10 55,14" fill="#3B5BDB" /></svg>
+              <svg width="60" height="20" viewBox="0 0 60 20"><path d="M0 10h60" stroke="#bbb" strokeWidth="1.5" strokeDasharray="4 4" /><polygon points="55,6 60,10 55,14" fill="#3B5BDB" /></svg>
             </div>
             <div className={styles.stepItem}>
               <div className={styles.stepIconWrap}>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                  <rect x="10" y="18" width="6" height="18" rx="1" fill="#3B5BDB" opacity="0.3"/>
-                  <rect x="21" y="12" width="6" height="24" rx="1" fill="#3B5BDB" opacity="0.6"/>
-                  <rect x="32" y="6" width="6" height="30" rx="1" fill="#3B5BDB"/>
-                  <path d="M10 38L20 28L30 22L40 12" stroke="#3B5BDB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <rect x="10" y="18" width="6" height="18" rx="1" fill="#3B5BDB" opacity="0.3" />
+                  <rect x="21" y="12" width="6" height="24" rx="1" fill="#3B5BDB" opacity="0.6" />
+                  <rect x="32" y="6" width="6" height="30" rx="1" fill="#3B5BDB" />
+                  <path d="M10 38L20 28L30 22L40 12" stroke="#3B5BDB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div className={styles.stepLabel}><strong>2. Create</strong><br />Reports &amp; Dashboards</div>
             </div>
             <div className={styles.stepDots}>
-              <svg width="60" height="20" viewBox="0 0 60 20"><path d="M0 10h60" stroke="#bbb" strokeWidth="1.5" strokeDasharray="4 4"/><polygon points="55,6 60,10 55,14" fill="#3B5BDB" /></svg>
+              <svg width="60" height="20" viewBox="0 0 60 20"><path d="M0 10h60" stroke="#bbb" strokeWidth="1.5" strokeDasharray="4 4" /><polygon points="55,6 60,10 55,14" fill="#3B5BDB" /></svg>
             </div>
             <div className={styles.stepItem}>
               <div className={styles.stepIconWrap}>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                  <circle cx="20" cy="24" r="10" stroke="#3B5BDB" strokeWidth="2" fill="none"/>
-                  <circle cx="32" cy="24" r="10" stroke="#3B5BDB" strokeWidth="2" fill="none"/>
-                  <circle cx="20" cy="24" r="3" fill="#3B5BDB" opacity="0.4"/>
-                  <circle cx="32" cy="24" r="3" fill="#3B5BDB" opacity="0.4"/>
+                  <circle cx="20" cy="24" r="10" stroke="#3B5BDB" strokeWidth="2" fill="none" />
+                  <circle cx="32" cy="24" r="10" stroke="#3B5BDB" strokeWidth="2" fill="none" />
+                  <circle cx="20" cy="24" r="3" fill="#3B5BDB" opacity="0.4" />
+                  <circle cx="32" cy="24" r="3" fill="#3B5BDB" opacity="0.4" />
                 </svg>
               </div>
               <div className={styles.stepLabel}><strong>3. Share &amp; Embed</strong><br />Reports &amp; Dashboards</div>
@@ -344,7 +344,7 @@ export default function LandingPage() {
 function CheckIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M3 8.5l3.5 3L13 5" stroke="#555" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M3 8.5l3.5 3L13 5" stroke="#555" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -352,7 +352,7 @@ function CheckIcon() {
 function PlayIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ marginRight: 6 }}>
-      <polygon points="3,1 12,7 3,13" fill="currentColor"/>
+      <polygon points="3,1 12,7 3,13" fill="currentColor" />
     </svg>
   );
 }
@@ -360,8 +360,8 @@ function PlayIcon() {
 function PlayCircle() {
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <circle cx="18" cy="18" r="17" fill="rgba(0,0,0,0.5)" stroke="white" strokeWidth="1.5"/>
-      <polygon points="14,11 27,18 14,25" fill="white"/>
+      <circle cx="18" cy="18" r="17" fill="rgba(0,0,0,0.5)" stroke="white" strokeWidth="1.5" />
+      <polygon points="14,11 27,18 14,25" fill="white" />
     </svg>
   );
 }
