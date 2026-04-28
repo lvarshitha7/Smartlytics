@@ -7,6 +7,12 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
+// Root route for Render health check
+app.get('/', (req, res) => {
+  res.status(200).send('Smartlytics backend is live 🚀');
+});``
+// Health check
+app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date() }));
 
 // Middleware
 // app.use(cors({
@@ -70,17 +76,11 @@ async function connectToMongo() {
 }
 
 // Routes
-// Root route for Render health check
-app.get('/', (req, res) => {
-  res.status(200).send('Smartlytics backend is live 🚀');
-});``
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/datasets', require('./routes/datasets'));
 app.use('/api/dashboards', require('./routes/dashboards'));
 app.use('/api/ai', require('./routes/ai'));
 
-// Health check
-app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date() }));
 
 // Error handler
 app.use((err, req, res, next) => {
