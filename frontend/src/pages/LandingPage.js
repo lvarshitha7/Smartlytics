@@ -6,9 +6,8 @@ import styles from './LandingPage.module.css';
 
 const profile = {
   name: 'Laxmi Varshitha J',
-  github: 'https://github.com/your-username',
-  linkedin: 'https://www.linkedin.com/in/your-handle/',
-  resume: 'https://example.com/resume.pdf'
+  github: 'https://github.com/lvarshitha7',
+  linkedin: 'https://www.linkedin.com/in/lvarshitha7'
 };
 
 export default function LandingPage() {
@@ -333,7 +332,6 @@ export default function LandingPage() {
         <div className={styles.footerLinks}>
           <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href={profile.resume} target="_blank" rel="noreferrer">Resume</a>
         </div>
       </footer>
     </div>
