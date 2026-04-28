@@ -171,3 +171,16 @@ analytiq/
 **Frontend:** React 18, React Router 6, Chart.js 4, React-Chartjs-2, React-Dropzone, React-Toastify, Axios
 
 ---
+## 🤝 Contributing
+
+Contributions are welcome!
+
+If you'd like to contribute:
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-name`)
+3. Make your changes
+4. Commit (`git commit -m "Added feature"`)
+5. Push (`git push origin feature-name`)
+6. Open a Pull Request
+
+Feel free to open issues for bugs or feature requests.
