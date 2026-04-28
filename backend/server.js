@@ -70,6 +70,10 @@ async function connectToMongo() {
 }
 
 // Routes
+// Root route for Render health check
+app.get('/', (req, res) => {
+  res.status(200).send('Smartlytics backend is live 🚀');
+});``
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/datasets', require('./routes/datasets'));
 app.use('/api/dashboards', require('./routes/dashboards'));
