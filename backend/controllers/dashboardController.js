@@ -1,12 +1,15 @@
 const Dashboard = require('../models/Dashboard');
 const Dataset = require('../models/Dataset');
+const path = require('path');
 const { processDataset } = require('../utils/dataProcessor');
 
 // Compute widget data from full dataset
 async function computeWidgetData(widget, dataset) {
   try {
     const { processDataset } = require('../utils/dataProcessor');
-    const allData = await processDataset(dataset.filePath, dataset.fileType);
+    const fullPath = path.join(process.cwd(), dataset.filePath);
+
+const allData = await processDataset(fullPath, dataset.fileType);
     const data = allData.data;
 
     const hasMinPoints = (result, min = 3) => {
