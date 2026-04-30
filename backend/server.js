@@ -10,7 +10,7 @@ const app = express();
 // Root route for Render health check
 app.get('/', (req, res) => {
   res.status(200).send('Smartlytics backend is live 🚀');
-});``
+});
 // Health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date() }));
 
