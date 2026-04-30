@@ -39,7 +39,7 @@ export function LoginPage() {
         </Link>
         <h2 className={styles.title}>Sign in to your account</h2>
         <form className={styles.form} onSubmit={submit}>
-          <Input label="Business Email" name="email" type="email" value={form.email} onChange={handle}
+          <Input label="Enter your Email" name="email" type="email" value={form.email} onChange={handle}
             placeholder="you@email.com" error={errors.email} />
           <Input label="Password" name="password" type="password" value={form.password} onChange={handle}
             placeholder="••••••••" error={errors.password} />
