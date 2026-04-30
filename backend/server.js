@@ -7,6 +7,7 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
+app.set('trust proxy', 1);
 // Root route for Render health check
 app.get('/', (req, res) => {
   res.status(200).send('Smartlytics backend is live 🚀');
@@ -89,14 +90,13 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5001;
-connectToMongo()
-  .then(() => {
-    app.listen(PORT, '0.0.0.0', () => {
+
+app.listen(PORT, '0.0.0.0', async () => {
   console.log(`🚀 Server running on port ${PORT}`);
+
+  try {
+    await connectToMongo();
+  } catch (err) {
+    console.error('❌ MongoDB connection failed:', err.message);
+  }
 });
-  })
- 
-  .catch((err) => {
-    console.error('❌ MongoDB error (all connection attempts failed):', err.message);
-    process.exit(1);
-  });
