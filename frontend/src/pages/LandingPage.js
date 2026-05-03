@@ -112,21 +112,17 @@ export default function LandingPage() {
 
           <div className={styles.heroRight}>
             <div className={styles.signupCard}>
-              <div className={styles.cardTabs}>
-                <label className={styles.cardTab}>
-                  <input type="radio" name="mode" defaultChecked /> Cloud
-                </label>
-                <label className={styles.cardTab}>
-                  <input type="radio" name="mode" /> On-premise
-                </label>
+              <div className={styles.signupHeader}>
+                <h3 className={styles.signupTitle} style={{ color: '#e8143c' }}>Welcome to Smartlytics</h3>
               </div>
               <form className={styles.signupForm} onSubmit={submit}>
                 <div className={styles.formGroup}>
+
                   <input
                     className={styles.formInput}
                     type="email"
                     name="email"
-                    placeholder="Business Email *"
+                    placeholder="Email *"
                     value={form.email}
                     onChange={handle}
                     required
